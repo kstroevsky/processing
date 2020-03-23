@@ -1,0 +1,44 @@
+float xLocation; 
+float yLocation; 
+float t; 
+float g = 100; 
+
+void setup() {
+  size(900,800); 
+  background(0);
+  xLocation = random(700); 
+  yLocation = random(700); 
+  frameRate(5000);
+}
+
+void draw() {
+  float newXLocation = xLocation + random(100)-50;
+  float newYLocation = yLocation + random(100)-50;
+
+  if (newXLocation < 0) {
+    newXLocation = 0;
+  }
+  if (newXLocation > 900) {
+    newXLocation = 900;
+  }
+  if (newYLocation < 0) {
+    newYLocation = 0;
+  }
+  if (newYLocation > 800) {
+    newYLocation = 800;
+  }
+  t += 0.1; 
+  
+  if (t > 900) {
+    t = 0; 
+    g += 100; 
+  }
+  
+  float heigh = sqrt(sq(newXLocation/xLocation)+sq(newXLocation/xLocation))*20+g;
+  
+  stroke(255);
+  point(t,heigh); 
+    
+  xLocation = newXLocation; 
+  yLocation = newYLocation; 
+}
