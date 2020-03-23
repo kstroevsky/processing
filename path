@@ -1,0 +1,51 @@
+float xLocation; 
+float yLocation; 
+
+void setup() {
+  size(900,800); 
+  background(255,255,255);
+  xLocation = random(700); 
+  yLocation = random(700); 
+  frameRate(25);
+}
+
+void draw() {
+  fill(255,25); 
+  noStroke();
+  ellipse(mouseX,mouseY,100,100); 
+  
+  fill(255,2); 
+  rect(0,0,900,800); 
+  float newXLocation = xLocation + random(100)-50;
+  float newYLocation = yLocation + random(100)-50;
+
+  if (newXLocation < 0) {
+    newXLocation = 0;
+  }
+  if (newXLocation > 900) {
+    newXLocation = 900;
+  }
+  if (newYLocation < 0) {
+    newYLocation = 0;
+  }
+  if (newYLocation > 800) {
+    newYLocation = 800;
+  }
+  
+  if (newXLocation < mouseX+25 && newXLocation > mouseX-25) {
+    newXLocation = (newYLocation+25)*random(-1,1);
+  }
+  if (newYLocation < mouseY+25 && newYLocation > mouseY-25) {
+    newYLocation = (newXLocation+25)*random(-1,1);
+  }
+
+  
+  stroke(random(255),0,random(255),100); 
+  line(xLocation, yLocation, newXLocation, newYLocation); 
+  float randomCircleSize = random(50); 
+  fill(random(255),0,random(255),20); 
+  ellipse(newXLocation,newYLocation, randomCircleSize, randomCircleSize);
+    
+  xLocation = newXLocation; 
+  yLocation = newYLocation; 
+}
