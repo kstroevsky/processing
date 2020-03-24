@@ -1,0 +1,27 @@
+import com.hamoid.*;
+
+VideoExport videoExport;
+
+void setup() {
+  size(700,700); 
+  background(255);  
+  noFill(); 
+  stroke(0,40); 
+  videoExport = new VideoExport(this, "options.mp4");
+  videoExport.startMovie();
+}
+
+void draw() {
+  float t = (float)frameCount; 
+  translate(width/2,height/2); 
+  stroke(random(255),random(255),random(255)); 
+  line(sin(t/50)*(t/10), log(t/50)*(t/10)-300, log(tan((t))), cos(t));
+  videoExport.saveFrame();
+}
+
+void keyPressed() {
+  if (key == 'q') {
+    videoExport.endMovie();
+    exit();
+  }
+}
